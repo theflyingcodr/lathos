@@ -1,4 +1,4 @@
-module github.com/theflyingcodr/errs
+module github.com/theflyingcodr/lathos
 
 go 1.15
 

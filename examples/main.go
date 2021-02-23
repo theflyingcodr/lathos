@@ -5,7 +5,7 @@ import (
 
 	"github.com/pkg/errors"
 
-	"github.com/theflyingcodr/errs"
+	"github.com/theflyingcodr/lathos"
 )
 
 func main() {
