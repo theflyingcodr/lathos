@@ -12,6 +12,7 @@ type ClientError interface {
 	Code() string
 	Title() string
 	Detail() string
+	error
 }
 
 // IsClientError

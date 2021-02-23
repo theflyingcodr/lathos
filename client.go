@@ -40,10 +40,6 @@ func (e ErrClient) Detail() string {
 	return e.detail
 }
 
-func (e ErrClient) Unwrap() error {
-	return e
-}
-
 func (e ErrClient) Error() string {
 	return e.title + ": " + e.detail
 }
