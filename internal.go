@@ -6,10 +6,9 @@ import (
 	"github.com/google/uuid"
 )
 
-// ErrInternal can be implemented to create errors used
-// to capture internal faults. These could then be sent to an
-// error logging system to be rectified.
-// In terms of a web server, this would be a 5XX error.
+// ErrInternal implements InternalError and can be used
+// to create server errors. You can also implement your own version
+// by implementing the methods on the InternalError interface.
 type ErrInternal struct {
 	id      string
 	message string
