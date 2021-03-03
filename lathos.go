@@ -114,7 +114,6 @@ func IsCannotProcess(err error) bool {
 	return errors.As(err, &t)
 }
 
-
 // Unavailable when implemented will indicate that the service is not currently available.
 // This could also be returned if a database or critical dependency isn't reachable.
 type Unavailable interface {

@@ -10,9 +10,9 @@ import (
 // to create server errors. You can also implement your own version
 // by implementing the methods on the InternalError interface.
 type ErrInternal struct {
-	id      string
-	message string
-	stack   string
+	id       string
+	message  string
+	stack    string
 	metadata map[string]string
 }
 
@@ -23,10 +23,10 @@ type ErrInternal struct {
 // You can implement your own.
 func NewErrInternal(err error, metadata map[string]string) ErrInternal {
 	return ErrInternal{
-		id:      uuid.New().String(),
-		message: err.Error(),
-		stack:   fmt.Sprintf("%+v", err),
-		metadata:metadata,
+		id:       uuid.New().String(),
+		message:  err.Error(),
+		stack:    fmt.Sprintf("%+v", err),
+		metadata: metadata,
 	}
 }
 
