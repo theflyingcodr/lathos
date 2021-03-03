@@ -1,4 +1,4 @@
-package lathos
+package errs
 
 import (
 	"fmt"
