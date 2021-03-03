@@ -1,6 +1,4 @@
-# lathos
-
-![Go Report Card](https://goreportcard.com/badge/github.com/theflyingcodr/lathos) ![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/theflyingcodr/lathos?style=flat-square)
+# lathos ![example workflow](https://github.com/theflyingcodr/lathos/actions/workflows/go.yml/badge.svg) ![Go Report Card](https://goreportcard.com/badge/github.com/theflyingcodr/lathos) ![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/theflyingcodr/lathos?style=flat-square)
 
 Greek for error, lathos is an errors package for go.
 
