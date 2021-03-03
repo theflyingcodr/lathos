@@ -18,7 +18,9 @@ jobs:
       with:
         go-version: 1.15
     - name: Lint
-      run: make run-linter
+      run: |
+        make install-linter
+        make run-linter
     - name: Tests
       run: make run-unit-tests
     - name: Build
