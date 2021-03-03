@@ -41,8 +41,10 @@ jobs:
       run: make run-unit-tests
     - name: Build
       run: go build -v ./...
-
-    - name: GoReleaser
+  release:
+    runs-on: ubuntu-latest
+    steps:
+    - name: release
       uses: goreleaser/goreleaser-action@v2
       if: startsWith(github.ref, 'refs/tags/')
       with:
