@@ -5,7 +5,7 @@ run-service:
 
 run-all-tests: run-linter run-unit-tests
 
-pre-commit: vendor-deps run-linter run-pipeline-unit-tests
+pre-commit: vendor-deps run-linter run-unit-tests
 
 run-unit-tests:
 	@go clean -testcache && go test -v ./... -race
