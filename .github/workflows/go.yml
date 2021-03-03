@@ -42,6 +42,7 @@ jobs:
     - name: Build
       run: go build -v ./...
   release:
+    needs: [golangci,build]
     runs-on: ubuntu-latest
     steps:
     - name: release
