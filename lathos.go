@@ -90,3 +90,39 @@ func IsNotAuthenticated(err error) bool {
 	var t NotAuthenticated
 	return errors.As(err, &t)
 }
+
+// BadRequest when implemented will indicate that the error is a BadRequest error to be returned
+// when user input is invalid.
+type BadRequest interface {
+	BadRequest() bool
+}
+
+// IsBadRequest will check that an error is a BadRequest type.
+func IsBadRequest(err error) bool {
+	var t BadRequest
+	return errors.As(err, &t)
+}
+
+// CannotProcess when implemented will indicate that the request can no longer be processed.
+type CannotProcess interface {
+	CannotProcess() bool
+}
+
+// IsCannotProcess will check that an error is a CannotProcess type.
+func IsCannotProcess(err error) bool {
+	var t CannotProcess
+	return errors.As(err, &t)
+}
+
+
+// Unavailable when implemented will indicate that the service is not currently available.
+// This could also be returned if a database or critical dependency isn't reachable.
+type Unavailable interface {
+	Unavailable() bool
+}
+
+// IsUnavailable will check that an error is an Unavailable type.
+func IsUnavailable(err error) bool {
+	var t Unavailable
+	return errors.As(err, &t)
+}
