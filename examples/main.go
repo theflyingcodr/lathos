@@ -18,6 +18,7 @@ func main() {
 	fmt.Printf("%+v\n", Test())
 }
 
+// Test does nothing.
 func Test() error {
 	return errors.Wrap(fmt.Errorf("%w test1", errors.Wrap(errs.NewErrNotFound("E404", "could not find thing"), "another")), "test1")
 }
