@@ -66,3 +66,13 @@ If you then create a global error handler, you can check the errors in one place
 
 There are some examples in the [examples](examples) folder.
 
+## Compatibility
+
+As this uses features introduced in Go1.13 relating to errors and error checks it will only work in projects using Go 1.13 and above.
+
+It can still be used with the excellent [pkg/errors](https://github.com/pkg/errors) package as from version 0.9.0 they added support for the Go1.13 error types.
+
+## Contributions
+
+If you have any suggestions or improvements feel free to add an Issue or create a PR and I'll be very grateful!
+
