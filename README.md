@@ -4,7 +4,7 @@ Greek for error, lathos is an errors package for go.
 
 It utilises checking errors for behaviour, not type or substring. This helps to make error checking elegant and removes dependency on your code from concrete error types.
 
-This library was heavily influenced by a [blog from Dave Cheney](https://dave.cheney.net/2016/04/27/dont-just-check-errors-handle-them-gracefully) and is my take on the paradigms discussed there.
+This library was heavily influenced by a [blog from Dave Cheney (Don’t just check errors, handle them gracefully)](https://tpow.app/2a736d9f) and is my take on the paradigms discussed there.
 
 ## Examples
 
@@ -70,7 +70,7 @@ There are some examples in the [examples](examples) folder.
 
 As this uses features introduced in Go1.13 relating to errors and error checks it will only work in projects using Go 1.13 and above.
 
-It can still be used with the excellent [pkg/errors](https://github.com/pkg/errors) package as from version 0.9.0 they added support for the Go1.13 error types.
+It can still be used with the excellent [pkg/errors](https://tpow.app/f8efe08c) package as from version 0.9.0 they added support for the Go1.13 error types.
 
 ## Contributions
 
