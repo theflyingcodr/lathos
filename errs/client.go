@@ -204,7 +204,7 @@ func NewErrUnprocessable(code, detail string) ErrUnprocessable {
 	}
 }
 
-// Unprocessable implements the Unprocessable interface
+// CannotProcess implements the Unprocessable interface
 // and is used in error checking code.
 func (e ErrUnprocessable) CannotProcess() bool {
 	return true
