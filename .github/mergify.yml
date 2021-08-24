@@ -28,6 +28,9 @@ pull_request_rules:
         message: Automatically approving dependabot pull request
       merge:
         method: merge
+      label:
+        add:
+          - update
   - name: Alert on major version detection
     conditions:
       - author~=^dependabot(|-preview)\[bot\]$
@@ -73,6 +76,9 @@ pull_request_rules:
       - label!=work-in-progress
       - -draft
     actions:
+      review:
+        type: APPROVE
+        message: Automatically approving @theflyingcodr pull request
       merge:
         method: merge
 
