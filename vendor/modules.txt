@@ -1,8 +1,8 @@
-# github.com/google/uuid v1.2.0
+# github.com/google/uuid v1.3.0
 ## explicit
 github.com/google/uuid
 # github.com/matryer/is v1.4.0
-## explicit
+## explicit; go 1.14
 github.com/matryer/is
 # github.com/pkg/errors v0.9.1
 ## explicit
