@@ -87,7 +87,7 @@ pull_request_rules:
       merge:
         method: merge
       comment:
-        message: "Automatically merging this PR, LGTM! \n ![Great Success](https://tenor.com/view/borat-very-nice-great-success-yes-gif-13625290)"
+        message: "Automatically merging this PR, LGTM! \n\n  ![Great Success](https://media.giphy.com/media/a0h7sAqON67nO/giphy.gif?cid=ecf05e47wywpzv7bclrv6muzureq5hk0u3rd8fradbqjng68&rid=giphy.gif&ct=g)"
 
   # ===============================================================================
   # AUTHOR
