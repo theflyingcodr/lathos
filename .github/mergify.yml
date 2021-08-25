@@ -51,7 +51,11 @@ pull_request_rules:
     actions:
       comment:
         message: "⚠️ @theflyingcodr: this is a major version bump and requires your attention"
-
+      label:
+        add:
+          - update
+      assign:
+        users: [ "theflyingcodr" ]
 
   # ===============================================================================
   # AUTOMATIC MERGE (APPROVALS)
@@ -59,7 +63,9 @@ pull_request_rules:
 
   - name: Automatic Merge ⬇️ on Approval ✔
     conditions:
-      - "#approved-reviews-by>=1"
+      - or:
+        - author=theflyingcodr
+        - "#approved-reviews-by>=1"
       - check-success='build (1.15.x, ubuntu-latest)'
       - check-success='build (1.16.x, ubuntu-latest)'
       - check-success='build (1.15.x, macos-latest)'
@@ -78,31 +84,10 @@ pull_request_rules:
     actions:
       review:
         type: APPROVE
-        message: Automatically approving @theflyingcodr pull request
       merge:
         method: merge
-
-  - name: Automatic Merge ⬇️ on Author by owner ✔
-    conditions:
-      - author=theflyingcodr
-      - check-success='build (1.15.x, ubuntu-latest)'
-      - check-success='build (1.16.x, ubuntu-latest)'
-      - check-success='build (1.15.x, macos-latest)'
-      - check-success='build (1.16.x, macos-latest)'
-      - check-success='build (1.15.x, windows-latest)'
-      - check-success='build (1.16.x, windows-latest)'
-      - check-success='lint (1.15.x, ubuntu-latest)'
-      - check-success='lint (1.16.x, ubuntu-latest)'
-      - check-success='lint (1.15.x, macos-latest)'
-      - check-success='lint (1.16.x, macos-latest)'
-      - check-success='lint (1.15.x, windows-latest)'
-      - check-success='lint (1.16.x, windows-latest)'
-      - check-success='Analyze (go)'
-      - label!=work-in-progress
-      - -draft
-    actions:
-      merge:
-        method: merge
+      comment:
+        message: "Automatically merging this PR, LGTM! \n ![Great Success](https://tenor.com/view/borat-very-nice-great-success-yes-gif-13625290)"
 
   # ===============================================================================
   # AUTHOR
