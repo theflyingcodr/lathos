@@ -1,6 +1,8 @@
 package errs
 
 import (
+	"fmt"
+
 	"github.com/google/uuid"
 )
 
@@ -16,11 +18,11 @@ type ErrClient struct {
 	detail string
 }
 
-func newErrClient(code, detail string) ErrClient {
+func newErrClient(code, detail string, a ...interface{}) ErrClient {
 	return ErrClient{
 		id:     uuid.New().String(),
 		code:   code,
-		detail: detail,
+		detail: fmt.Sprintf(detail, a...),
 	}
 }
 
@@ -70,8 +72,8 @@ type ErrNotFound struct {
 // a particular error in code such as E404.
 // Detail can be supplied to give more context to the error, ie
 // "resource 123 does not exist".
-func NewErrNotFound(code, detail string) ErrNotFound {
-	c := newErrClient(code, detail)
+func NewErrNotFound(code, detail string, a ...interface{}) ErrNotFound {
+	c := newErrClient(code, detail, a...)
 	c.title = "Not found"
 	return ErrNotFound{
 		ErrClient: c,
@@ -95,8 +97,8 @@ type ErrDuplicate struct {
 // a particular error in code such as D001.
 // Detail can be supplied to give more context to the error, ie
 // "resource 123 already exists".
-func NewErrDuplicate(code, detail string) ErrDuplicate {
-	c := newErrClient(code, detail)
+func NewErrDuplicate(code, detail string, a ...interface{}) ErrDuplicate {
+	c := newErrClient(code, detail, a...)
 	c.title = "Item already exists"
 	return ErrDuplicate{
 		ErrClient: c,
@@ -121,8 +123,8 @@ type ErrNotAuthenticated struct {
 // to show a custom message.
 // Detail can be supplied to give more context to the error, ie
 // "user not authenticated".
-func NewErrNotAuthenticated(code, detail string) ErrNotAuthenticated {
-	c := newErrClient(code, detail)
+func NewErrNotAuthenticated(code, detail string, a ...interface{}) ErrNotAuthenticated {
+	c := newErrClient(code, detail, a...)
 	c.title = "Not authenticated"
 	return ErrNotAuthenticated{
 		ErrClient: c,
@@ -146,8 +148,8 @@ type ErrNotAuthorised struct {
 // a particular error in code such as F001.
 // Detail can be supplied to give more context to the error, ie
 // "user 123 cannot access resource".
-func NewErrNotAuthorised(code, detail string) ErrNotAuthorised {
-	c := newErrClient(code, detail)
+func NewErrNotAuthorised(code, detail string, a ...interface{}) ErrNotAuthorised {
+	c := newErrClient(code, detail, a...)
 	c.title = "Permission denied"
 	return ErrNotAuthorised{
 		ErrClient: c,
@@ -171,8 +173,8 @@ type ErrNotAvailable struct {
 // a particular error in code such as U001.
 // Detail can be supplied to give more context to the error, ie
 // "the service is not currently available".
-func NewErrNotAvailable(code, detail string) ErrNotAvailable {
-	c := newErrClient(code, detail)
+func NewErrNotAvailable(code, detail string, a ...interface{}) ErrNotAvailable {
+	c := newErrClient(code, detail, a...)
 	c.title = "Not available"
 	return ErrNotAvailable{
 		ErrClient: c,
@@ -196,8 +198,8 @@ type ErrUnprocessable struct {
 // a particular error in code such as U001.
 // Detail can be supplied to give more context to the error, ie
 // "cannot process this request".
-func NewErrUnprocessable(code, detail string) ErrUnprocessable {
-	c := newErrClient(code, detail)
+func NewErrUnprocessable(code, detail string, a ...interface{}) ErrUnprocessable {
+	c := newErrClient(code, detail, a...)
 	c.title = "Unprocessable"
 	return ErrUnprocessable{
 		ErrClient: c,
