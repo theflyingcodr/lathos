@@ -18,11 +18,11 @@ type ErrClient struct {
 	detail string
 }
 
-func newErrClient(code, detail string, a ...interface{}) ErrClient {
+func newErrClient(code, detail string) ErrClient {
 	return ErrClient{
 		id:     uuid.New().String(),
 		code:   code,
-		detail: fmt.Sprintf(detail, a...),
+		detail: detail,
 	}
 }
 
@@ -72,12 +72,21 @@ type ErrNotFound struct {
 // a particular error in code such as E404.
 // Detail can be supplied to give more context to the error, ie
 // "resource 123 does not exist".
-func NewErrNotFound(code, detail string, a ...interface{}) ErrNotFound {
-	c := newErrClient(code, detail, a...)
+func NewErrNotFound(code, detail string) ErrNotFound {
+	c := newErrClient(code, detail)
 	c.title = "Not found"
 	return ErrNotFound{
 		ErrClient: c,
 	}
+}
+
+// NewErrNotFoundf will create and return a new NotFound error.
+// You can supply a code which can be set in your application to identify
+// a particular error in code such as E404.
+// Detail can be supplied to give more context to the error, ie
+// "resource 123 does not exist".
+func NewErrNotFoundf(code, detail string, a ...interface{}) ErrNotFound {
+	return NewErrNotFound(code, fmt.Sprintf(detail, a...))
 }
 
 // NotFound implements the NotFound interface
@@ -97,12 +106,21 @@ type ErrDuplicate struct {
 // a particular error in code such as D001.
 // Detail can be supplied to give more context to the error, ie
 // "resource 123 already exists".
-func NewErrDuplicate(code, detail string, a ...interface{}) ErrDuplicate {
-	c := newErrClient(code, detail, a...)
+func NewErrDuplicate(code, detail string) ErrDuplicate {
+	c := newErrClient(code, detail)
 	c.title = "Item already exists"
 	return ErrDuplicate{
 		ErrClient: c,
 	}
+}
+
+// NewErrDuplicatef will create and return a new Duplicate error.
+// You can supply a code which can be set in your application to identify
+// a particular error in code such as D001.
+// Detail can be supplied to give more context to the error, ie
+// "resource 123 already exists".
+func NewErrDuplicatef(code, detail string, a ...interface{}) ErrDuplicate {
+	return NewErrDuplicate(code, fmt.Sprintf(detail, a...))
 }
 
 // Duplicate implements the Duplicate interface and
@@ -123,12 +141,22 @@ type ErrNotAuthenticated struct {
 // to show a custom message.
 // Detail can be supplied to give more context to the error, ie
 // "user not authenticated".
-func NewErrNotAuthenticated(code, detail string, a ...interface{}) ErrNotAuthenticated {
-	c := newErrClient(code, detail, a...)
+func NewErrNotAuthenticated(code, detail string) ErrNotAuthenticated {
+	c := newErrClient(code, detail)
 	c.title = "Not authenticated"
 	return ErrNotAuthenticated{
 		ErrClient: c,
 	}
+}
+
+// NewErrNotAuthenticatedf will create and return a new NotAuthenticated error.
+// You can supply a code which can be set in your application to identify
+// a particular error in code such as F001 which can be handled by clients
+// to show a custom message.
+// Detail can be supplied to give more context to the error, ie
+// "user not authenticated".
+func NewErrNotAuthenticatedf(code, detail string, a ...interface{}) ErrNotAuthenticated {
+	return NewErrNotAuthenticated(code, fmt.Sprintf(detail, a...))
 }
 
 // NotAuthenticated implements the NotAuthenticated interface
@@ -148,12 +176,21 @@ type ErrNotAuthorised struct {
 // a particular error in code such as F001.
 // Detail can be supplied to give more context to the error, ie
 // "user 123 cannot access resource".
-func NewErrNotAuthorised(code, detail string, a ...interface{}) ErrNotAuthorised {
-	c := newErrClient(code, detail, a...)
+func NewErrNotAuthorised(code, detail string) ErrNotAuthorised {
+	c := newErrClient(code, detail)
 	c.title = "Permission denied"
 	return ErrNotAuthorised{
 		ErrClient: c,
 	}
+}
+
+// NewErrNotAuthorisedf will create and return a new NotAuthorised error.
+// You can supply a code which can be set in your application to identify
+// a particular error in code such as F001.
+// Detail can be supplied to give more context to the error, ie
+// "user 123 cannot access resource".
+func NewErrNotAuthorisedf(code, detail string, a ...interface{}) ErrNotAuthorised {
+	return NewErrNotAuthorised(code, fmt.Sprintf(detail, a...))
 }
 
 // NotAuthorised implements the NotAuthorised interface
@@ -173,12 +210,21 @@ type ErrNotAvailable struct {
 // a particular error in code such as U001.
 // Detail can be supplied to give more context to the error, ie
 // "the service is not currently available".
-func NewErrNotAvailable(code, detail string, a ...interface{}) ErrNotAvailable {
-	c := newErrClient(code, detail, a...)
+func NewErrNotAvailable(code, detail string) ErrNotAvailable {
+	c := newErrClient(code, detail)
 	c.title = "Not available"
 	return ErrNotAvailable{
 		ErrClient: c,
 	}
+}
+
+// NewErrNotAvailablef will create and return a new NotAvailable error.
+// You can supply a code which can be set in your application to identify
+// a particular error in code such as U001.
+// Detail can be supplied to give more context to the error, ie
+// "the service is not currently available".
+func NewErrNotAvailablef(code, detail string, a ...interface{}) ErrNotAvailable {
+	return NewErrNotAvailable(code, fmt.Sprintf(detail, a...))
 }
 
 // Unavailable implements the Unavailable interface used
@@ -198,12 +244,21 @@ type ErrUnprocessable struct {
 // a particular error in code such as U001.
 // Detail can be supplied to give more context to the error, ie
 // "cannot process this request".
-func NewErrUnprocessable(code, detail string, a ...interface{}) ErrUnprocessable {
-	c := newErrClient(code, detail, a...)
+func NewErrUnprocessable(code, detail string) ErrUnprocessable {
+	c := newErrClient(code, detail)
 	c.title = "Unprocessable"
 	return ErrUnprocessable{
 		ErrClient: c,
 	}
+}
+
+// NewErrUnprocessablef will create and return a new Unprocessable error.
+// You can supply a code which can be set in your application to identify
+// a particular error in code such as U001.
+// Detail can be supplied to give more context to the error, ie
+// "cannot process this request".
+func NewErrUnprocessablef(code, detail string, a ...interface{}) ErrUnprocessable {
+	return NewErrUnprocessable(code, fmt.Sprintf(detail, a...))
 }
 
 // CannotProcess implements the Unprocessable interface

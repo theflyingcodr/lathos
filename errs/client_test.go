@@ -58,27 +58,27 @@ func Test_FmtString(t *testing.T) {
 		expErr error
 	}{
 		"err not found": {
-			err:    NewErrNotFound("test", "test %s", "format"),
+			err:    NewErrNotFoundf("test", "test %s", "format"),
 			expErr: errors.New("Not found: test format"),
 		},
 		"err new duplicate": {
-			err:    NewErrDuplicate("test", "test %s", "format"),
+			err:    NewErrDuplicatef("test", "test %s", "format"),
 			expErr: errors.New("Item already exists: test format"),
 		},
 		"err not authenticated": {
-			err:    NewErrNotAuthenticated("test", "test %s", "format"),
+			err:    NewErrNotAuthenticatedf("test", "test %s", "format"),
 			expErr: errors.New("Not authenticated: test format"),
 		},
 		"err not authorised": {
-			err:    NewErrNotAuthorised("test", "test %s", "format"),
+			err:    NewErrNotAuthorisedf("test", "test %s", "format"),
 			expErr: errors.New("Permission denied: test format"),
 		},
 		"err not available": {
-			err:    NewErrNotAvailable("test", "test %s", "format"),
+			err:    NewErrNotAvailablef("test", "test %s", "format"),
 			expErr: errors.New("Not available: test format"),
 		},
 		"err unprocessable": {
-			err:    NewErrUnprocessable("test", "test %s", "format"),
+			err:    NewErrUnprocessablef("test", "test %s", "format"),
 			expErr: errors.New("Unprocessable: test format"),
 		},
 	}
