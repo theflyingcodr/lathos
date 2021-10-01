@@ -24,15 +24,15 @@ func TestIsDuplicate(t *testing.T) {
 			expClient: true,
 			expDup:    true,
 		}, "wrapped duplicate error should return true if it implements Duplicate": {
-			err:       fmt.Errorf("my error %w",   NewErrDuplicate("test", "test")),
+			err:       fmt.Errorf("my error %w", NewErrDuplicate("test", "test")),
 			expClient: true,
 			expDup:    true,
 		}, "wrapped pkg/error duplicate error should return true if it implements Duplicate": {
-			err:       pkgerrs.Wrap(fmt.Errorf("my error %w",   NewErrDuplicate("test", "test")), "wrapped error"),
+			err:       pkgerrs.Wrap(fmt.Errorf("my error %w", NewErrDuplicate("test", "test")), "wrapped error"),
 			expClient: true,
 			expDup:    true,
 		}, "other error type should return false for duplicate check": {
-			err:       NewErrNotFound("test","test"),
+			err:       NewErrNotFound("test", "test"),
 			expClient: true,
 			expDup:    false,
 		}, "error not implementing interface should return false": {
@@ -47,6 +47,46 @@ func TestIsDuplicate(t *testing.T) {
 			is.Equal(false, lathos.IsBadRequest(test.err))
 			is.Equal(test.expClient, lathos.IsClientError(test.err))
 			is.Equal(test.expDup, lathos.IsDuplicate(test.err))
+		})
+	}
+}
+
+func Test_FmtString(t *testing.T) {
+	t.Parallel()
+	tests := map[string]struct {
+		err    error
+		expErr error
+	}{
+		"err not found": {
+			err:    NewErrNotFoundf("test", "test %s", "format"),
+			expErr: errors.New("Not found: test format"),
+		},
+		"err new duplicate": {
+			err:    NewErrDuplicatef("test", "test %s", "format"),
+			expErr: errors.New("Item already exists: test format"),
+		},
+		"err not authenticated": {
+			err:    NewErrNotAuthenticatedf("test", "test %s", "format"),
+			expErr: errors.New("Not authenticated: test format"),
+		},
+		"err not authorised": {
+			err:    NewErrNotAuthorisedf("test", "test %s", "format"),
+			expErr: errors.New("Permission denied: test format"),
+		},
+		"err not available": {
+			err:    NewErrNotAvailablef("test", "test %s", "format"),
+			expErr: errors.New("Not available: test format"),
+		},
+		"err unprocessable": {
+			err:    NewErrUnprocessablef("test", "test %s", "format"),
+			expErr: errors.New("Unprocessable: test format"),
+		},
+	}
+
+	for name, test := range tests {
+		t.Run(name, func(t *testing.T) {
+			is := is.NewRelaxed(t)
+			is.Equal(test.err.Error(), test.expErr.Error())
 		})
 	}
 }
