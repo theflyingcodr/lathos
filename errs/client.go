@@ -16,6 +16,7 @@ type ErrClient struct {
 	detail string
 }
 
+// oh wow
 func newErrClient(code, detail string) ErrClient {
 	return ErrClient{
 		id:     uuid.New().String(),
