@@ -369,9 +369,10 @@ func TestIsUnavailable(t *testing.T) {
 type testInternalErr struct{ error }
 
 func (t testInternalErr) ID() string                  { return "" }
+func (t testInternalErr) Code() string                  { return "" }
 func (t testInternalErr) Message() string             { return "" }
 func (t testInternalErr) Stack() string               { return "" }
-func (t testInternalErr) Metadata() map[string]string { return nil }
+func (t testInternalErr) Metadata() map[string]interface{} { return nil }
 
 func TestIsInternalError(t *testing.T) {
 	t.Parallel()
