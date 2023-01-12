@@ -260,9 +260,3 @@ func NewErrUnprocessable(code, detail string) ErrUnprocessable {
 func NewErrUnprocessablef(code, detail string, a ...interface{}) ErrUnprocessable {
 	return NewErrUnprocessable(code, fmt.Sprintf(detail, a...))
 }
-
-// CannotProcess implements the Unprocessable interface
-// and is used in error checking code.
-func (e ErrUnprocessable) CannotProcess() bool {
-	return true
-}

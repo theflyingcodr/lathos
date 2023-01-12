@@ -133,3 +133,15 @@ func IsUnavailable(err error) bool {
 	var t Unavailable
 	return errors.As(err, &t)
 }
+
+// Retryable when implemented will indicate that the error is retryable
+// at which point you can try to re-submit as there is a chance it could succeed.
+type Retryable interface {
+	Retryable() bool
+}
+
+// IsRetryable will check that an error is a Retryable type.
+func IsRetryable(err error) bool {
+	var t Retryable
+	return errors.As(err, &t)
+}
