@@ -93,3 +93,8 @@ func NewErrRetryable(err error, detail, code string) ErrRetryable {
 		ErrInternal: c,
 	}
 }
+
+// Retryable implements the retryable error type.
+func (e ErrRetryable) Retryable() bool {
+	return true
+}
