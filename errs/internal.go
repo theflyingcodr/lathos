@@ -67,7 +67,7 @@ func (e ErrInternal) Metadata() map[string]interface{} {
 
 // Error implements the error interface.
 func (e ErrInternal) Error() string {
-	return e.message
+	return fmt.Sprintf("%s: %s", e.message, e.err)
 }
 
 // Code returns the error code if there is one.
