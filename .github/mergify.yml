@@ -8,19 +8,18 @@ pull_request_rules:
     conditions:
       - -draft
       - author~=^dependabot(|-preview)\[bot\]$
-      - check-success='build (1.18.x, ubuntu-latest)'
-      - check-success='build (1.19.x, ubuntu-latest)'
-      - check-success='build (1.18.x, macos-latest)'
-      - check-success='build (1.19.x, macos-latest)'
-      - check-success='build (1.18.x, windows-latest)'
-      - check-success='build (1.19.x, windows-latest)'
-      - check-success='lint (1.18.x, ubuntu-latest)'
-      - check-success='lint (1.19.x, ubuntu-latest)'
-      - check-success='lint (1.18.x, macos-latest)'
-      - check-success='lint (1.19.x, macos-latest)'
-      - check-success='lint (1.18.x, windows-latest)'
-      - check-success='lint (1.19.x, windows-latest)'
-      - check-success='Analyze (go)'
+      - check-success='build (1.20.x, ubuntu-latest)'
+      - check-success='build (1.21.x, ubuntu-latest)'
+      - check-success='build (1.20.x, macos-latest)'
+      - check-success='build (1.21.x, macos-latest)'
+      - check-success='build (1.20.x, windows-latest)'
+      - check-success='build (1.21.x, windows-latest)'
+      - check-success='lint (1.20.x, ubuntu-latest)'
+      - check-success='lint (1.21.x, ubuntu-latest)'
+      - check-success='lint (1.20.x, macos-latest)'
+      - check-success='lint (1.21.x, macos-latest)'
+      - check-success='lint (1.20.x, windows-latest)'
+      - check-success='lint (1.21.x, windows-latest)'
       - title~=^Bump [^\s]+ from ([\d]+)\..+ to \1\.
     actions:
       review:
@@ -34,19 +33,18 @@ pull_request_rules:
   - name: Alert on major version detection
     conditions:
       - author~=^dependabot(|-preview)\[bot\]$
-      - check-success='build (1.18.x, ubuntu-latest)'
-      - check-success='build (1.19.x, ubuntu-latest)'
-      - check-success='build (1.18.x, macos-latest)'
-      - check-success='build (1.19.x, macos-latest)'
-      - check-success='build (1.18.x, windows-latest)'
-      - check-success='build (1.19.x, windows-latest)'
-      - check-success='lint (1.18.x, ubuntu-latest)'
-      - check-success='lint (1.19.x, ubuntu-latest)'
-      - check-success='lint (1.18.x, macos-latest)'
-      - check-success='lint (1.19.x, macos-latest)'
-      - check-success='lint (1.18.x, windows-latest)'
-      - check-success='lint (1.19.x, windows-latest)'
-      - check-success='Analyze (go)'
+      - check-success='build (1.20.x, ubuntu-latest)'
+      - check-success='build (1.21.x, ubuntu-latest)'
+      - check-success='build (1.20.x, macos-latest)'
+      - check-success='build (1.21.x, macos-latest)'
+      - check-success='build (1.20.x, windows-latest)'
+      - check-success='build (1.21.x, windows-latest)'
+      - check-success='lint (1.20.x, ubuntu-latest)'
+      - check-success='lint (1.21.x, ubuntu-latest)'
+      - check-success='lint (1.20.x, macos-latest)'
+      - check-success='lint (1.21.x, macos-latest)'
+      - check-success='lint (1.20.x, windows-latest)'
+      - check-success='lint (1.21.x, windows-latest)'
       - -title~=^Bump [^\s]+ from ([\d]+)\..+ to \1\.
     actions:
       comment:
@@ -66,19 +64,18 @@ pull_request_rules:
       - or:
         - author=theflyingcodr
         - "#approved-reviews-by>=1"
-      - check-success='build (1.18.x, ubuntu-latest)'
-      - check-success='build (1.19.x, ubuntu-latest)'
-      - check-success='build (1.18.x, macos-latest)'
-      - check-success='build (1.19.x, macos-latest)'
-      - check-success='build (1.18.x, windows-latest)'
-      - check-success='build (1.19.x, windows-latest)'
-      - check-success='lint (1.18.x, ubuntu-latest)'
-      - check-success='lint (1.19.x, ubuntu-latest)'
-      - check-success='lint (1.18.x, macos-latest)'
-      - check-success='lint (1.19.x, macos-latest)'
-      - check-success='lint (1.18.x, windows-latest)'
-      - check-success='lint (1.19.x, windows-latest)'
-      - check-success='Analyze (go)'
+      - check-success='build (1.20.x, ubuntu-latest)'
+      - check-success='build (1.21.x, ubuntu-latest)'
+      - check-success='build (1.20.x, macos-latest)'
+      - check-success='build (1.21.x, macos-latest)'
+      - check-success='build (1.20.x, windows-latest)'
+      - check-success='build (1.21.x, windows-latest)'
+      - check-success='lint (1.20.x, ubuntu-latest)'
+      - check-success='lint (1.21.x, ubuntu-latest)'
+      - check-success='lint (1.20.x, macos-latest)'
+      - check-success='lint (1.21.x, macos-latest)'
+      - check-success='lint (1.20.x, windows-latest)'
+      - check-success='lint (1.21.x, windows-latest)'
       - label!=work-in-progress
       - -draft
     actions:
