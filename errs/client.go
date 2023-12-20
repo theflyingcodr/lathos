@@ -260,3 +260,9 @@ func NewErrUnprocessable(code, detail string) ErrUnprocessable {
 func NewErrUnprocessablef(code, detail string, a ...interface{}) ErrUnprocessable {
 	return NewErrUnprocessable(code, fmt.Sprintf(detail, a...))
 }
+
+// CannotProcess we understand the request, it is valid,
+// but we are unable to process this request.
+func (e ErrUnprocessable) CannotProcess() bool {
+	return true
+}
