@@ -266,3 +266,37 @@ func NewErrUnprocessablef(code, detail string, a ...interface{}) ErrUnprocessabl
 func (e ErrUnprocessable) CannotProcess() bool {
 	return true
 }
+
+// ErrTooManyRequests can be returned if you reach a condition
+// where the system cannot handle any more requests due to a rate limit.
+type ErrTooManyRequests struct {
+	ErrClient
+}
+
+// NewErrTooManyRequests will create and return a new TooManyRequests error.
+// You can supply a code which can be set in your application to identify
+// a particular error in code such as R001.
+// Detail can be supplied to give more context to the error, ie
+// "rate limit exceeded".
+func NewErrTooManyRequests(code, detail string) ErrTooManyRequests {
+	c := newErrClient(code, detail)
+	c.title = "Too many requests"
+	return ErrTooManyRequests{
+		ErrClient: c,
+	}
+}
+
+// NewErrTooManyRequestsf will create and return a new TooManyRequests error.
+// You can supply a code which can be set in your application to identify
+// a particular error in code such as R001.
+// Detail can be supplied to give more context to the error, ie
+// "cannot process this request".
+func NewErrTooManyRequestsf(code, detail string, a ...interface{}) ErrTooManyRequests {
+	return NewErrTooManyRequests(code, fmt.Sprintf(detail, a...))
+}
+
+// TooManyRequests we understand the request, it is valid,
+// but we are unable to process this request.
+func (e ErrTooManyRequests) TooManyRequests() bool {
+	return true
+}

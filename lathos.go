@@ -145,3 +145,15 @@ func IsRetryable(err error) bool {
 	var t Retryable
 	return errors.As(err, &t)
 }
+
+// TooManyRequests when implemented will indicate that too many
+// requests have occurred and the system cannot handle any further requests.
+type TooManyRequests interface {
+	TooManyRequests() bool
+}
+
+// IsTooManyRequests will check if this is a tooManyRequests error.
+func IsTooManyRequests(err error) bool {
+	var t TooManyRequests
+	return errors.As(err, &t)
+}
