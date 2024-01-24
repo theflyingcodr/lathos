@@ -81,6 +81,10 @@ func Test_FmtString(t *testing.T) {
 			err:    NewErrUnprocessablef("test", "test %s", "format"),
 			expErr: errors.New("Unprocessable: test format"),
 		},
+		"err toomanyrequests": {
+			err:    NewErrTooManyRequestsf("test", "test %s", "format"),
+			expErr: errors.New("Too many requests: test format"),
+		},
 	}
 
 	for name, test := range tests {
