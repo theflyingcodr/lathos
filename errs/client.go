@@ -317,7 +317,7 @@ func (e ErrConflict) Conflict() bool {
 // You can supply a code which can be set in your application to identify
 // a particular error in code such as C001.
 // Detail can be supplied to give more context to the error, ie
-// "cannot process this request".
+// "entity already exists".
 func NewErrConflict(code, detail string) ErrConflict {
 	c := newErrClient(code, detail)
 	c.title = "Conflict"
@@ -330,7 +330,7 @@ func NewErrConflict(code, detail string) ErrConflict {
 // You can supply a code which can be set in your application to identify
 // a particular error in code such as C001.
 // Detail can be supplied to give more context to the error, ie
-// "cannot process this request".
+// "entity already exists".
 func NewErrConflictf(code, detail string, a ...interface{}) ErrConflict {
 	return NewErrConflict(code, fmt.Sprintf(detail, a...))
 }
