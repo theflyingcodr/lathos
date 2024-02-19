@@ -157,3 +157,13 @@ func IsTooManyRequests(err error) bool {
 	var t TooManyRequests
 	return errors.As(err, &t)
 }
+
+type Conflict interface {
+	Conflict() bool
+}
+
+// IsConflict will check if this is a conflict error.
+func IsConflict(err error) bool {
+	var t Conflict
+	return errors.As(err, &t)
+}

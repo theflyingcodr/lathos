@@ -85,6 +85,10 @@ func Test_FmtString(t *testing.T) {
 			err:    NewErrTooManyRequestsf("test", "test %s", "format"),
 			expErr: errors.New("Too many requests: test format"),
 		},
+		"err conflict": {
+			err:    NewErrConflictf("test", "test %s", "format"),
+			expErr: errors.New("Conflict: test format"),
+		},
 	}
 
 	for name, test := range tests {
