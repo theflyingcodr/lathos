@@ -158,6 +158,8 @@ func IsTooManyRequests(err error) bool {
 	return errors.As(err, &t)
 }
 
+// Conflict when implemented will indicate that the request cannot be completed
+// due to a conflict with the current state of the resource.
 type Conflict interface {
 	Conflict() bool
 }
