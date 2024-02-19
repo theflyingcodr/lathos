@@ -300,3 +300,37 @@ func NewErrTooManyRequestsf(code, detail string, a ...interface{}) ErrTooManyReq
 func (e ErrTooManyRequests) TooManyRequests() bool {
 	return true
 }
+
+// ErrConflict can be returned if you reach a condition
+// where the system is in conflict with a user's request.
+type ErrConflict struct {
+	ErrClient
+}
+
+// Conflict we understand the request, it is valid,
+// but we are unable to process this request due to a conflict.
+func (e ErrConflict) Conflict() bool {
+	return true
+}
+
+// NewErrConflict will create and return a new Conflict error.
+// You can supply a code which can be set in your application to identify
+// a particular error in code such as C001.
+// Detail can be supplied to give more context to the error, ie
+// "entity already exists".
+func NewErrConflict(code, detail string) ErrConflict {
+	c := newErrClient(code, detail)
+	c.title = "Conflict"
+	return ErrConflict{
+		ErrClient: c,
+	}
+}
+
+// NewErrConflictf will create and return a new Conflict error.
+// You can supply a code which can be set in your application to identify
+// a particular error in code such as C001.
+// Detail can be supplied to give more context to the error, ie
+// "entity already exists".
+func NewErrConflictf(code, detail string, a ...interface{}) ErrConflict {
+	return NewErrConflict(code, fmt.Sprintf(detail, a...))
+}
