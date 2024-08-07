@@ -18,33 +18,49 @@ func TestIsDuplicate(t *testing.T) {
 		err       error
 		expClient bool
 		expDup    bool
+		expBadReq bool
 	}{
 		"duplicate error should return true if it implements Duplicate": {
 			err:       NewErrDuplicate("test", "test"),
 			expClient: true,
 			expDup:    true,
-		}, "wrapped duplicate error should return true if it implements Duplicate": {
+			expBadReq: false,
+		},
+		"wrapped duplicate error should return true if it implements Duplicate": {
 			err:       fmt.Errorf("my error %w", NewErrDuplicate("test", "test")),
 			expClient: true,
 			expDup:    true,
-		}, "wrapped pkg/error duplicate error should return true if it implements Duplicate": {
+			expBadReq: false,
+		},
+		"wrapped pkg/error duplicate error should return true if it implements Duplicate": {
 			err:       pkgerrs.Wrap(fmt.Errorf("my error %w", NewErrDuplicate("test", "test")), "wrapped error"),
 			expClient: true,
 			expDup:    true,
-		}, "other error type should return false for duplicate check": {
+			expBadReq: false,
+		},
+		"other error type should return false for duplicate check": {
 			err:       NewErrNotFound("test", "test"),
 			expClient: true,
 			expDup:    false,
-		}, "error not implementing interface should return false": {
+			expBadReq: false,
+		},
+		"error not implementing interface should return false": {
 			err:       errors.New("standard error"),
 			expClient: false,
 			expDup:    false,
+			expBadReq: false,
+		},
+		"error not implementing bad request should return true": {
+			err:       NewErrBadRequest("test", "test"),
+			expClient: true,
+			expDup:    false,
+			expBadReq: true,
 		},
 	}
 	for name, test := range tests {
 		t.Run(name, func(t *testing.T) {
 			is = is.NewRelaxed(t)
-			is.Equal(false, lathos.IsBadRequest(test.err))
+			is.Equal(test.expBadReq, lathos.IsBadRequest(test.err))
 			is.Equal(test.expClient, lathos.IsClientError(test.err))
 			is.Equal(test.expDup, lathos.IsDuplicate(test.err))
 		})
@@ -88,6 +104,10 @@ func Test_FmtString(t *testing.T) {
 		"err conflict": {
 			err:    NewErrConflictf("test", "test %s", "format"),
 			expErr: errors.New("Conflict: test format"),
+		},
+		"err bad request": {
+			err:    NewErrBadRequestf("test", "test %s", "format"),
+			expErr: errors.New("Bad Request: test format"),
 		},
 	}
 

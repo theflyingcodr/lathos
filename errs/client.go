@@ -334,3 +334,35 @@ func NewErrConflict(code, detail string) ErrConflict {
 func NewErrConflictf(code, detail string, a ...interface{}) ErrConflict {
 	return NewErrConflict(code, fmt.Sprintf(detail, a...))
 }
+
+// ErrBadRequest we don't the request, and are unable
+// to process it as it is not valid.
+type ErrBadRequest struct {
+	ErrClient
+}
+
+func (e ErrBadRequest) BadRequest() bool {
+	return true
+}
+
+// NewErrBadRequest will create and return a new BadRequest error.
+// You can supply a code which can be set in your application to identify
+// a particular error in code such as B001.
+// Detail can be supplied to give more context to the error, ie
+// "missing required value".
+func NewErrBadRequest(code, detail string) ErrBadRequest {
+	c := newErrClient(code, detail)
+	c.title = "Bad Request"
+	return ErrBadRequest{
+		ErrClient: c,
+	}
+}
+
+// NewErrBadRequestf will create and return a new BadRequest error.
+// You can supply a code which can be set in your application to identify
+// a particular error in code such as B001.
+// Detail can be supplied to give more context to the error, ie
+// "missing required value".
+func NewErrBadRequestf(code, detail string, a ...interface{}) ErrBadRequest {
+	return NewErrBadRequest(code, fmt.Sprintf(detail, a...))
+}
